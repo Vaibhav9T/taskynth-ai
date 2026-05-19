@@ -19,18 +19,36 @@ public class TaskService {
     private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
 
-    public Task createTask(TaskRequest request) {
+    private User getUserByPrincipal(String principalName) {
+        try {
+            Long id = Long.parseLong(principalName);
+            return userRepository.findById(id)
+                    .orElseGet(() -> userRepository.findByEmail(principalName)
+                            .orElseThrow(() -> new RuntimeException("User not found")));
+        } catch (NumberFormatException e) {
+            return userRepository.findByEmail(principalName)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+        }
+    }
 
-        User assignedUser = userRepository.findById(request.getAssignedUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public Task createTask(TaskRequest request, String principalName) {
 
-        Project project = projectRepository.findById(request.getProjectId())
-                .orElseThrow(() -> new RuntimeException("Project not found"));
+        User assignedUser = getUserByPrincipal(principalName);
+
+        Project project = null;
+        if (request.getProjectId() != null) {
+            project = projectRepository.findById(request.getProjectId()).orElse(null);
+        }
+
+        LocalDate date = LocalDate.now();
+        if (request.getDueDate() != null && !request.getDueDate().isEmpty()) {
+            date = LocalDate.parse(request.getDueDate());
+        }
 
         Task task = Task.builder()
                 .title(request.getTitle())
                 .description(request.getDescription())
-                .dueDate(LocalDate.parse(request.getDueDate()))
+                .dueDate(date)
                 .priority(TaskPriority.valueOf(request.getPriority()))
                 .status(TaskStatus.valueOf(request.getStatus()))
                 .assignedUser(assignedUser)
@@ -48,6 +66,30 @@ public class TaskService {
 
         return taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
+    }
+
+    public Task updateTask(Long id, TaskRequest request) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        Project project = null;
+        if (request.getProjectId() != null) {
+            project = projectRepository.findById(request.getProjectId()).orElse(null);
+        }
+
+        LocalDate date = task.getDueDate();
+        if (request.getDueDate() != null && !request.getDueDate().isEmpty()) {
+            date = LocalDate.parse(request.getDueDate());
+        }
+
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setDueDate(date);
+        task.setPriority(TaskPriority.valueOf(request.getPriority()));
+        task.setStatus(TaskStatus.valueOf(request.getStatus()));
+        task.setProject(project);
+
+        return taskRepository.save(task);
     }
 
     public Task updateTaskStatus(Long id, String status) {

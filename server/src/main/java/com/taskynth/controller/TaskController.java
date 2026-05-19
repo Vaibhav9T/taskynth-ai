@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -19,11 +20,16 @@ public class TaskController {
 
     @PostMapping
     public ResponseEntity<Task> createTask(
-            @RequestBody TaskRequest request
+            @RequestBody TaskRequest request,
+            Principal principal
     ) {
 
+        if (principal == null) {
+            throw new RuntimeException("Unauthorized: No principal found. Ensure your client sends the JWT token.");
+        }
+
         return ResponseEntity.ok(
-                taskService.createTask(request)
+                taskService.createTask(request, principal.getName())
         );
     }
 
@@ -42,6 +48,16 @@ public class TaskController {
 
         return ResponseEntity.ok(
                 taskService.getTaskById(id)
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(
+            @PathVariable Long id,
+            @RequestBody TaskRequest request
+    ) {
+        return ResponseEntity.ok(
+                taskService.updateTask(id, request)
         );
     }
 

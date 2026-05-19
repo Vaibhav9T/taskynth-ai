@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -23,11 +24,15 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @JsonIgnore
     private String password;
+
+    private String bio;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "members")
     private List<Project> projects;
 }
