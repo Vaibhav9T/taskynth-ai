@@ -1,91 +1,104 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import {
+  FaTasks,
+  FaSpinner,
+  FaCheckCircle,
+  FaExclamationTriangle,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Dashboard = () => {
 
   const [stats, setStats] = useState({});
 
   useEffect(() => {
-
     fetchStats();
-
   }, []);
 
   const fetchStats = async () => {
 
     try {
 
-      const response = await API.get(
-        "/dashboard/stats"
-      );
+      const response = await API.get("/dashboard/stats");
 
       setStats(response.data);
 
     } catch (error) {
-
       console.log(error);
     }
   };
+const cards = [
+    {
+      title: "Total Tasks",
+      value: stats.totalTasks,
+      icon: <FaTasks size={28} />,
+      color: "from-cyan-500 to-blue-500",
+    },
+    {
+      title: "Todo Tasks",
+      value: stats.todoTasks,
+      icon: <FaSpinner size={28} />,
+      color: "from-purple-500 to-pink-500",
+    },
+    {
+      title: "Completed",
+      value: stats.doneTasks,
+      icon: <FaCheckCircle size={28} />,
+      color: "from-green-500 to-emerald-500",
+    },
+    {
+      title: "Overdue",
+      value: stats.overdueTasks,
+      icon: <FaExclamationTriangle size={28} />,
+      color: "from-red-500 to-orange-500",
+    },
+  ];
 
   return (
 
-    <div className="p-10 bg-gray-100 min-h-screen">
+    <div>
 
-      <h1 className="text-4xl font-bold mb-8">
-        Dashboard
-      </h1>
+      <div className="mb-10">
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <h1 className="text-5xl font-bold text-white mb-3">
+          Dashboard
+        </h1>
 
-        <div className="bg-white p-6 rounded shadow">
-          <h2 className="text-xl font-semibold">
-            Total Tasks
-          </h2>
+        <p className="text-slate-400 text-lg">
+          AI-powered project collaboration workspace.
+        </p>
 
-          <p className="text-3xl mt-4">
-            {stats.totalTasks}
-          </p>
-        </div>
+      </div>
 
-        <div className="bg-white p-6 rounded shadow">
-          <h2 className="text-xl font-semibold">
-            Todo Tasks
-          </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
 
-          <p className="text-3xl mt-4">
-            {stats.todoTasks}
-          </p>
-        </div>
+        {cards.map((card, index) => (
 
-        <div className="bg-white p-6 rounded shadow">
-          <h2 className="text-xl font-semibold">
-            In Progress
-          </h2>
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+            className={`bg-gradient-to-r ${card.color} p-8 rounded-3xl shadow-xl`}
+          ><div className="flex items-center justify-between mb-8">
+              {card.icon}
+              <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
+                Live
+              </span>
+            </div>
 
-          <p className="text-3xl mt-4">
-            {stats.inProgressTasks}
-          </p>
-        </div>
+            <h2 className="text-xl font-semibold mb-2">
+              {card.title}
+            </h2>
 
-        <div className="bg-white p-6 rounded shadow">
-          <h2 className="text-xl font-semibold">
-            Completed
-          </h2>
+            <p className="text-5xl font-bold">
+              {card.value || 0}
+            </p>
 
-          <p className="text-3xl mt-4">
-            {stats.doneTasks}
-          </p>
-        </div>
+          </motion.div>
 
-        <div className="bg-white p-6 rounded shadow">
-          <h2 className="text-xl font-semibold">
-            Overdue Tasks
-          </h2>
-
-          <p className="text-3xl mt-4">
-            {stats.overdueTasks}
-          </p>
-        </div>
+        ))}
 
       </div>
 
