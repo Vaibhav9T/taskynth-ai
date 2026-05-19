@@ -32,76 +32,71 @@ const cards = [
     {
       title: "Total Tasks",
       value: stats.totalTasks,
-      icon: <FaTasks size={28} />,
-      color: "from-cyan-500 to-blue-500",
+      icon: <FaTasks size={20} />,
+      color: "text-blue-400",
+      bg: "bg-blue-500/10",
+      border: "border-blue-500/20"
     },
     {
-      title: "Todo Tasks",
+      title: "In Progress",
       value: stats.todoTasks,
-      icon: <FaSpinner size={28} />,
-      color: "from-purple-500 to-pink-500",
+      icon: <FaSpinner size={20} />,
+      color: "text-amber-400",
+      bg: "bg-amber-500/10",
+      border: "border-amber-500/20"
     },
     {
       title: "Completed",
       value: stats.doneTasks,
-      icon: <FaCheckCircle size={28} />,
-      color: "from-green-500 to-emerald-500",
+      icon: <FaCheckCircle size={20} />,
+      color: "text-emerald-400",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/20"
     },
     {
       title: "Overdue",
       value: stats.overdueTasks,
-      icon: <FaExclamationTriangle size={28} />,
-      color: "from-red-500 to-orange-500",
+      icon: <FaExclamationTriangle size={20} />,
+      color: "text-rose-400",
+      bg: "bg-rose-500/10",
+      border: "border-rose-500/20"
     },
   ];
 
   return (
-
-    <div>
-
+    <div className="p-8 max-w-7xl mx-auto text-white">
       <div className="mb-10">
-
-        <h1 className="text-5xl font-bold text-white mb-3">
+        <h1 className="text-4xl font-extrabold tracking-tight mb-2">
           Dashboard
         </h1>
-
-        <p className="text-slate-400 text-lg">
-          AI-powered project collaboration workspace.
+        <p className="text-gray-400 text-sm">
+          Overview of your workspace and team progress.
         </p>
-
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         {cards.map((card, index) => (
-
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
-            className={`bg-gradient-to-r ${card.color} p-8 rounded-3xl shadow-xl`}
-          ><div className="flex items-center justify-between mb-8">
-              {card.icon}
-              <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
-                Live
-              </span>
+            transition={{ delay: index * 0.1, duration: 0.4 }}
+            className={`p-6 rounded-2xl bg-[#18181b] border ${card.border} flex flex-col justify-between relative overflow-hidden`}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <div className={`p-3 rounded-xl ${card.bg} ${card.color}`}>
+                {card.icon}
+              </div>
             </div>
-
-            <h2 className="text-xl font-semibold mb-2">
-              {card.title}
-            </h2>
-
-            <p className="text-5xl font-bold">
-              {card.value || 0}
-            </p>
-
+            <div>
+              <p className="text-gray-400 text-sm font-medium mb-1">{card.title}</p>
+              <h2 className="text-4xl font-bold text-white tracking-tight">
+                {card.value || 0}
+              </h2>
+            </div>
           </motion.div>
-
         ))}
-
       </div>
-
     </div>
   );
 };

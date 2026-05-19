@@ -8,6 +8,7 @@ import com.taskynth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,12 +18,24 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
 
-    public Project createProject(ProjectRequest request) {
+    private User getUserByPrincipal(String principalName) {
+        try {
+            Long id = Long.parseLong(principalName);
+            return userRepository.findById(id)
+                    .orElseGet(() -> userRepository.findByEmail(principalName)
+                            .orElseThrow(() -> new RuntimeException("User not found")));
+        } catch (NumberFormatException e) {
+            return userRepository.findByEmail(principalName)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+        }
+    }
 
-        User creator = userRepository.findById(request.getCreatedById())
-                .orElseThrow(() -> new RuntimeException("Creator not found"));
+     public Project createProject(ProjectRequest request, String principalName) {
 
-        List<User> members = userRepository.findAllById(request.getMemberIds());
+        User creator = getUserByPrincipal(principalName);
+
+        List<User> members = new ArrayList<>();
+        members.add(creator);
 
         Project project = Project.builder()
                 .title(request.getTitle())
@@ -42,6 +55,16 @@ public class ProjectService {
 
         return projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
+    }
+
+    public Project updateProject(Long id, ProjectRequest request) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        project.setTitle(request.getTitle());
+        project.setDescription(request.getDescription());
+
+        return projectRepository.save(project);
     }
 
     public void deleteProject(Long id) {
