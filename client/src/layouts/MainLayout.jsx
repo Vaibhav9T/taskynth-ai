@@ -52,7 +52,9 @@ const MainLayout = () => {
         <div>
 
           <h1 className="text-2xl font-extrabold tracking-tight mb-8 text-white hidden md:block">
-            Taskynth
+  
+            Taskynth <span className="text-blue-500">AI</span>
+          
           </h1>
 
           <nav className="space-y-2">

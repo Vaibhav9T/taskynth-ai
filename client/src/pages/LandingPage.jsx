@@ -44,7 +44,7 @@ export default function LandingPage() {
       {/* Navbar */}
       <nav className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-2xl font-extrabold text-white">
             Taskynth <span className="text-blue-500">AI</span>
           </h1>
 

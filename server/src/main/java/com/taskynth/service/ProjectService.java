@@ -18,21 +18,12 @@ public class ProjectService {
     private final ProjectRepository projectRepository;
     private final UserRepository userRepository;
 
-    private User getUserByPrincipal(String principalName) {
-        try {
-            Long id = Long.parseLong(principalName);
-            return userRepository.findById(id)
-                    .orElseGet(() -> userRepository.findByEmail(principalName)
-                            .orElseThrow(() -> new RuntimeException("User not found")));
-        } catch (NumberFormatException e) {
-            return userRepository.findByEmail(principalName)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-        }
-    }
+    public Project createProject(ProjectRequest request) {
 
-     public Project createProject(ProjectRequest request, String principalName) {
-
-        User creator = getUserByPrincipal(principalName);
+        User creator = userRepository.findAll()
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No users found"));
 
         List<User> members = new ArrayList<>();
         members.add(creator);
@@ -58,6 +49,7 @@ public class ProjectService {
     }
 
     public Project updateProject(Long id, ProjectRequest request) {
+
         Project project = projectRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Project not found"));
 

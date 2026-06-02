@@ -3,6 +3,7 @@ package com.taskynth.service;
 import com.taskynth.dto.UserProfileRequest;
 import com.taskynth.entity.User;
 import com.taskynth.repository.UserRepository;
+import com.taskynth.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,30 +12,33 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
-    public User getUserByEmail(String email) {
+    public User getCurrentUser(String authHeader) {
+
+        String token = authHeader.replace("Bearer ", "");
+
+        String email = jwtUtil.extractEmail(token);
+
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public User getUserByPrincipal(String principalName) {
-        try {
-            Long id = Long.parseLong(principalName);
-            return userRepository.findById(id)
-                    .orElseGet(() -> getUserByEmail(principalName));
-        } catch (NumberFormatException e) {
-            return getUserByEmail(principalName);
-        }
-    }
+    public User updateCurrentUser(
+            String authHeader,
+            UserProfileRequest request
+    ) {
 
-    public User updateProfile(String principalName, UserProfileRequest request) {
-        User user = getUserByPrincipal(principalName);
-        
+        String token = authHeader.replace("Bearer ", "");
+
+        String email = jwtUtil.extractEmail(token);
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         user.setName(request.getName());
-        // Intentionally NOT updating the email here to prevent JWT desync issues
-        // user.setEmail(request.getEmail());
         user.setBio(request.getBio());
-        
+
         return userRepository.save(user);
     }
 }
