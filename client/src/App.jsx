@@ -8,6 +8,7 @@ import MainLayout from "./layouts/MainLayout";
 import Projects from "./pages/Projects";
 import Tasks from "./pages/Tasks";
 import Profile from "./pages/Profile";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
 
@@ -25,7 +26,9 @@ function App() {
       />
       <Routes>
 
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LandingPage />} />
+
+<Route path="/login" element={<Login />} />
 
       <Route path="/register" element={<Register />} />
 
