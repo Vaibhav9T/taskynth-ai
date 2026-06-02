@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import API from "../api/axios";
 import { AuthContext } from "../context/AuthContext";
+import Back from "../components/back";
 
 const Login = () => {
 
@@ -61,6 +62,7 @@ const Login = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="w-full max-w-md bg-[#18181b]/80 backdrop-blur-xl border border-white/10 p-8 sm:p-10 rounded-3xl shadow-2xl relative z-10"
       >
+          <Back />
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-white mb-2">
             Welcome back

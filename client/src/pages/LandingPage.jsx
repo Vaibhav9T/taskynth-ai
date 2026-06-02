@@ -8,8 +8,12 @@ import {
   FaChartLine,
   FaShieldAlt,
 } from "react-icons/fa";
+import {useState} from "react";
+import { AnimatePresence } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function LandingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const features = [
     {
       icon: <FaTasks />,
@@ -42,29 +46,79 @@ export default function LandingPage() {
       </div>
 
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <h1 className="text-2xl font-extrabold text-white">
-            Taskynth <span className="text-blue-500">AI</span>
-          </h1>
+     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/70 border-b border-white/10">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
 
-          <div className="flex gap-4">
-            <Link
-              to="/login"
-              className="px-5 py-2 rounded-xl border border-white/20 hover:bg-white/5"
-            >
-              Login
-            </Link>
+    <Link
+      to="/"
+      className="text-2xl font-extrabold"
+    >
+      Taskynth <span className="text-blue-500">AI</span>
+    </Link>
 
-            <Link
-              to="/register"
-              className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700"
-            >
-              Get Started
-            </Link>
-          </div>
+    {/* Desktop Menu */}
+    <div className="hidden md:flex items-center gap-4">
+
+      <Link
+        to="/login"
+        className="px-5 py-2 rounded-xl border border-white/20 hover:bg-white/5 transition"
+      >
+        Login
+      </Link>
+
+      <Link
+        to="/register"
+        className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 transition"
+      >
+        Get Started
+      </Link>
+
+    </div>
+
+    {/* Mobile Button */}
+    <button
+      onClick={() =>
+        setMobileMenuOpen(!mobileMenuOpen)
+      }
+      className="md:hidden text-white text-xl"
+    >
+      {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+    </button>
+
+  </div>
+
+  {/* Mobile Drawer */}
+  <AnimatePresence>
+    {mobileMenuOpen && (
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+        className="md:hidden border-t border-white/10 bg-slate-950/95"
+      >
+        <div className="flex flex-col p-4 gap-3">
+
+          <Link
+            to="/login"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 py-3 rounded-xl border border-white/20"
+          >
+            Login
+          </Link>
+
+          <Link
+            to="/register"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full text-center px-4 py-3 rounded-xl bg-blue-600"
+          >
+            Get Started
+          </Link>
+
         </div>
-      </nav>
+      </motion.div>
+    )}
+  </AnimatePresence>
+</nav>
 
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 py-24 text-center">
@@ -76,7 +130,7 @@ export default function LandingPage() {
             AI-Powered Team Collaboration Platform
           </span>
 
-          <h1 className="text-6xl md:text-7xl font-bold leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             Plan Projects.
             <br />
             Assign Tasks.
@@ -84,13 +138,13 @@ export default function LandingPage() {
             Track Progress.
           </h1>
 
-          <p className="max-w-3xl mx-auto mt-8 text-xl text-slate-400">
+          <p className="max-w-3xl mx-auto mt-6 text-base sm:text-lg md:text-xl px-2">
             Taskynth AI helps modern teams organize projects,
             collaborate efficiently and deliver work faster through
             a centralized task management workspace.
           </p>
 
-          <div className="flex justify-center gap-4 mt-10">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
             <Link
               to="/register"
               className="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 font-semibold"
@@ -115,7 +169,7 @@ export default function LandingPage() {
           className="mt-20"
         >
           <div className="max-w-5xl mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
-            <div className="grid md:grid-cols-4 gap-6">
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="bg-slate-900 rounded-2xl p-6">
                 <p className="text-slate-400">Total Tasks</p>
                 <h3 className="text-4xl font-bold mt-2">128</h3>
@@ -152,7 +206,7 @@ export default function LandingPage() {
           Everything Your Team Needs
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -180,7 +234,7 @@ export default function LandingPage() {
           How Taskynth Works
         </h2>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             "Create Project",
             "Invite Team",

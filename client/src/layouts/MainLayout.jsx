@@ -29,7 +29,7 @@ const MainLayout = () => {
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#18181b]/80 backdrop-blur-xl sticky top-0 z-30">
         <h1 className="text-xl font-extrabold tracking-tight text-white">
-          Taskynth
+          Taskynth <span className="text-blue-500">AI</span>
         </h1>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
