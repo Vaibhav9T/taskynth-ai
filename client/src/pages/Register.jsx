@@ -44,7 +44,7 @@ const Register = () => {
         "/auth/register",
         formData
       );
-      navigate("/");
+      navigate("/login");
       toast.success("Account created successfully!");
     } catch (error) {
       toast.error("Registration failed");
@@ -109,7 +109,7 @@ const Register = () => {
 
         <p className="text-center text-sm text-gray-400 mt-8">
           Already have an account?
-          <Link to="/" className="text-white font-medium hover:underline ml-1.5">
+          <Link to="/login" className="text-white font-medium hover:underline ml-1.5">
             Sign in
           </Link>
         </p>
