@@ -4,7 +4,7 @@ AI-Powered Full-Stack Team Task Management Platform
 
 Taskynth is a modern full-stack task and project management platform built for collaborative team workflows. The application enables users to create projects, assign tasks, manage teams, and track task progress with secure role-based authentication.
 
-The platform is developed using React.js, Spring Boot, MySQL, and JWT Authentication with a scalable REST API architecture.
+The platform is developed using React.js, Spring Boot, PostgreSQL, and JWT Authentication with a scalable REST API architecture.
 
 ---
 
@@ -114,7 +114,7 @@ https://your-demo-video-link
 ---
 
 ## Database
-- MySQL
+- PostgreSQL
 
 ---
 
@@ -132,7 +132,7 @@ REST APIs (Spring Boot)
        ↓
 Spring Security + JWT
        ↓
-MySQL Database
+PostgreSQL Database
 ```
 
 ---
@@ -302,7 +302,7 @@ http://localhost:8080
 
 ---
 
-# MySQL Database Setup
+# PostgreSQL Database Setup
 
 ## Create Database
 
@@ -319,14 +319,14 @@ CREATE DATABASE taskynth;
 ```properties
 spring.application.name=taskynth
 
-spring.datasource.url=jdbc:mysql://localhost:3306/taskynth
+spring.datasource.url=jdbc:PostgreSQL://localhost:3306/taskynth
 spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 
 server.port=8080
 
@@ -430,7 +430,7 @@ This project helped in understanding:
 - Spring Security
 - Database Relationships
 - JPA & Hibernate
-- MySQL Integration
+- PostgreSQL Integration
 - Frontend-Backend Communication
 - Railway Deployment
 - Role-Based Access Control
