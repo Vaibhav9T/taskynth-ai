@@ -20,6 +20,7 @@ public class AuthService {
     private final JwtUtil jwtUtil;
 
     public AuthResponse register(RegisterRequest request) {
+    try {
 
         if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("Email already exists");
@@ -40,7 +41,12 @@ public class AuthService {
                 .token(token)
                 .message("Registration successful")
                 .build();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw e;
     }
+}
 
     public AuthResponse login(LoginRequest request) {
 
