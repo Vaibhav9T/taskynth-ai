@@ -1,7 +1,11 @@
 package com.taskynth.service;
 
 import com.taskynth.dto.TaskRequest;
-import com.taskynth.entity.*;
+import com.taskynth.entity.Project;
+import com.taskynth.entity.Task;
+import com.taskynth.entity.TaskPriority;
+import com.taskynth.entity.TaskStatus;
+import com.taskynth.entity.User;
 import com.taskynth.repository.ProjectRepository;
 import com.taskynth.repository.TaskRepository;
 import com.taskynth.repository.UserRepository;
@@ -19,36 +23,30 @@ public class TaskService {
     private final UserRepository userRepository;
     private final ProjectRepository projectRepository;
 
-    private User getUserByPrincipal(String principalName) {
-        try {
-            Long id = Long.parseLong(principalName);
-            return userRepository.findById(id)
-                    .orElseGet(() -> userRepository.findByEmail(principalName)
-                            .orElseThrow(() -> new RuntimeException("User not found")));
-        } catch (NumberFormatException e) {
-            return userRepository.findByEmail(principalName)
-                    .orElseThrow(() -> new RuntimeException("User not found"));
-        }
-    }
+    public Task createTask(TaskRequest request) {
 
-    public Task createTask(TaskRequest request, String principalName) {
-
-        User assignedUser = getUserByPrincipal(principalName);
+        User assignedUser = userRepository.findAll()
+                .stream()
+                .findFirst()
+                .orElse(null);
 
         Project project = null;
+
         if (request.getProjectId() != null) {
-            project = projectRepository.findById(request.getProjectId()).orElse(null);
+            project = projectRepository.findById(request.getProjectId())
+                    .orElse(null);
         }
 
-        LocalDate date = LocalDate.now();
+        LocalDate dueDate = LocalDate.now();
+
         if (request.getDueDate() != null && !request.getDueDate().isEmpty()) {
-            date = LocalDate.parse(request.getDueDate());
+            dueDate = LocalDate.parse(request.getDueDate());
         }
 
         Task task = Task.builder()
                 .title(request.getTitle())
                 .description(request.getDescription())
-                .dueDate(date)
+                .dueDate(dueDate)
                 .priority(TaskPriority.valueOf(request.getPriority()))
                 .status(TaskStatus.valueOf(request.getStatus()))
                 .assignedUser(assignedUser)
@@ -69,22 +67,26 @@ public class TaskService {
     }
 
     public Task updateTask(Long id, TaskRequest request) {
+
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
         Project project = null;
+
         if (request.getProjectId() != null) {
-            project = projectRepository.findById(request.getProjectId()).orElse(null);
+            project = projectRepository.findById(request.getProjectId())
+                    .orElse(null);
         }
 
-        LocalDate date = task.getDueDate();
+        LocalDate dueDate = task.getDueDate();
+
         if (request.getDueDate() != null && !request.getDueDate().isEmpty()) {
-            date = LocalDate.parse(request.getDueDate());
+            dueDate = LocalDate.parse(request.getDueDate());
         }
 
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
-        task.setDueDate(date);
+        task.setDueDate(dueDate);
         task.setPriority(TaskPriority.valueOf(request.getPriority()));
         task.setStatus(TaskStatus.valueOf(request.getStatus()));
         task.setProject(project);

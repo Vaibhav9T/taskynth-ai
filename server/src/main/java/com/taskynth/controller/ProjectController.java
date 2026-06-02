@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -20,16 +19,11 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<Project> createProject(
-            @RequestBody ProjectRequest request,
-            Principal principal
+            @RequestBody ProjectRequest request
     ) {
 
-        if (principal == null) {
-            throw new RuntimeException("Unauthorized: No principal found. Ensure your client sends the JWT token.");
-        }
-
         return ResponseEntity.ok(
-                projectService.createProject(request, principal.getName())
+                projectService.createProject(request)
         );
     }
 
@@ -56,6 +50,7 @@ public class ProjectController {
             @PathVariable Long id,
             @RequestBody ProjectRequest request
     ) {
+
         return ResponseEntity.ok(
                 projectService.updateProject(id, request)
         );
