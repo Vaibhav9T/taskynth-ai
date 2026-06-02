@@ -12,20 +12,12 @@ The platform is developed using React.js, Spring Boot, PostgreSQL, and JWT Authe
 
 ## Frontend
 ```bash
-https://your-frontend-url.up.railway.app
+https://taskynth-ai.vercel.app/
 ```
 
 ## Backend API
 ```bash
-https://your-backend-url.up.railway.app
-```
-
----
-
-# Demo Video
-
-```bash
-https://your-demo-video-link
+https://taskynth-ai.onrender.com/
 ```
 
 ---
