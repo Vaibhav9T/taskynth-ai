@@ -1,10 +1,14 @@
-# Taskynth
+# Taskynth-AI
 
 AI-Powered Full-Stack Team Task Management Platform
 
 Taskynth is a modern full-stack task and project management platform built for collaborative team workflows. The application enables users to create projects, assign tasks, manage teams, and track task progress with secure role-based authentication.
 
 The platform is developed using React.js, Spring Boot, PostgreSQL, and JWT Authentication with a scalable REST API architecture.
+
+---
+# Dashboard
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/cd0d9cf3-6d8e-477e-a58f-6d42bac5d3f1" />
 
 ---
 
