@@ -110,11 +110,6 @@ https://taskynth-ai.onrender.com/
 
 ---
 
-## Deployment
-- Railway
-
----
-
 # System Architecture
 
 ```text
