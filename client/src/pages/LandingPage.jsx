@@ -11,6 +11,7 @@ import {
 import {useState} from "react";
 import { AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
+import ThemeToggle from "../layouts/ThemeToggle";
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,7 +39,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="bg-slate-950 text-white min-h-screen overflow-hidden">
+    <div className="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white min-h-screen overflow-hidden transition-colors duration-300">
       {/* Background Glow */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 h-96 w-96 bg-blue-500/20 rounded-full blur-3xl" />
@@ -46,7 +47,7 @@ export default function LandingPage() {
       </div>
 
       {/* Navbar */}
-     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-slate-950/70 border-b border-white/10">
+     <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-slate-950/70 border-b border-slate-200 dark:border-white/10 transition-colors duration-300">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
 
     <Link
@@ -61,7 +62,7 @@ export default function LandingPage() {
 
       <Link
         to="/login"
-        className="px-5 py-2 rounded-xl border border-white/20 hover:bg-white/5 transition"
+        className="px-5 py-2 rounded-xl border border-slate-300 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/5 transition"
       >
         Login
       </Link>
@@ -72,7 +73,7 @@ export default function LandingPage() {
       >
         Get Started
       </Link>
-
+      <ThemeToggle />
     </div>
 
     {/* Mobile Button */}
@@ -80,7 +81,7 @@ export default function LandingPage() {
       onClick={() =>
         setMobileMenuOpen(!mobileMenuOpen)
       }
-      className="md:hidden text-white text-xl"
+      className="md:hidden text-slate-900 dark:text-white text-xl"
     >
       {mobileMenuOpen ? <FaTimes /> : <FaBars />}
     </button>
@@ -94,14 +95,14 @@ export default function LandingPage() {
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: 0 }}
-        className="md:hidden border-t border-white/10 bg-slate-950/95"
+        className="md:hidden border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-slate-950/95 transition-colors duration-300"
       >
         <div className="flex flex-col p-4 gap-3">
 
           <Link
             to="/login"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full text-center px-4 py-3 rounded-xl border border-white/20"
+            className="w-full text-center px-4 py-3 rounded-xl border border-slate-300 dark:border-white/20"
           >
             Login
           </Link>
@@ -154,7 +155,7 @@ export default function LandingPage() {
 
             <Link
               to="/login"
-              className="px-8 py-4 rounded-2xl border border-white/20"
+              className="px-8 py-4 rounded-2xl border border-slate-300 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-transparent transition"
             >
               Login
             </Link>
@@ -168,29 +169,29 @@ export default function LandingPage() {
           transition={{ delay: 0.3 }}
           className="mt-20"
         >
-          <div className="max-w-5xl mx-auto rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8">
+          <div className="max-w-5xl mx-auto rounded-3xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/5 backdrop-blur-xl p-8 transition-colors duration-300">
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-slate-900 rounded-2xl p-6">
-                <p className="text-slate-400">Total Tasks</p>
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm dark:shadow-none transition-colors duration-300">
+                <p className="text-slate-500 dark:text-slate-400">Total Tasks</p>
                 <h3 className="text-4xl font-bold mt-2">128</h3>
               </div>
 
-              <div className="bg-slate-900 rounded-2xl p-6">
-                <p className="text-slate-400">Completed</p>
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm dark:shadow-none transition-colors duration-300">
+                <p className="text-slate-500 dark:text-slate-400">Completed</p>
                 <h3 className="text-4xl font-bold text-green-400 mt-2">
                   92
                 </h3>
               </div>
 
-              <div className="bg-slate-900 rounded-2xl p-6">
-                <p className="text-slate-400">In Progress</p>
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm dark:shadow-none transition-colors duration-300">
+                <p className="text-slate-500 dark:text-slate-400">In Progress</p>
                 <h3 className="text-4xl font-bold text-yellow-400 mt-2">
                   24
                 </h3>
               </div>
 
-              <div className="bg-slate-900 rounded-2xl p-6">
-                <p className="text-slate-400">Overdue</p>
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm dark:shadow-none transition-colors duration-300">
+                <p className="text-slate-500 dark:text-slate-400">Overdue</p>
                 <h3 className="text-4xl font-bold text-red-400 mt-2">
                   4
                 </h3>
@@ -210,7 +211,7 @@ export default function LandingPage() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition"
+              className="p-8 rounded-3xl bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:border-blue-500/50 transition-colors duration-300"
             >
               <div className="text-blue-500 text-3xl mb-4">
                 {feature.icon}
@@ -220,7 +221,7 @@ export default function LandingPage() {
                 {feature.title}
               </h3>
 
-              <p className="text-slate-400">
+              <p className="text-slate-500 dark:text-slate-400">
                 {feature.desc}
               </p>
             </div>
@@ -276,7 +277,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-8 text-center text-slate-500">
+      <footer className="border-t border-slate-200 dark:border-white/10 py-8 text-center text-slate-500 transition-colors duration-300">
         © 2026 Taskynth AI • Built with React, Spring Boot & PostgreSQL
       </footer>
     </div>

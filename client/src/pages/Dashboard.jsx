@@ -64,12 +64,12 @@ const cards = [
   ];
 
   return (
-    <div className="p-8 max-w-7xl mx-auto text-white">
+    <div className="p-8 max-w-7xl mx-auto text-slate-900 dark:text-white transition-colors duration-300">
       <div className="mb-10">
         <h1 className="text-4xl font-extrabold tracking-tight mb-2">
           Dashboard
         </h1>
-        <p className="text-gray-400 text-sm">
+        <p className="text-slate-500 dark:text-gray-400 text-sm transition-colors duration-300">
           Overview of your workspace and team progress.
         </p>
       </div>
@@ -81,7 +81,7 @@ const cards = [
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1, duration: 0.4 }}
-            className={`p-6 rounded-2xl bg-[#18181b] border ${card.border} flex flex-col justify-between relative overflow-hidden`}
+            className={`p-6 rounded-2xl bg-white dark:bg-[#18181b] border ${card.border} flex flex-col justify-between relative overflow-hidden shadow-sm dark:shadow-none transition-colors duration-300`}
           >
             <div className="flex items-center justify-between mb-4">
               <div className={`p-3 rounded-xl ${card.bg} ${card.color}`}>
@@ -89,8 +89,8 @@ const cards = [
               </div>
             </div>
             <div>
-              <p className="text-gray-400 text-sm font-medium mb-1">{card.title}</p>
-              <h2 className="text-4xl font-bold text-white tracking-tight">
+              <p className="text-slate-500 dark:text-gray-400 text-sm font-medium mb-1 transition-colors duration-300">{card.title}</p>
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-white tracking-tight transition-colors duration-300">
                 {card.value || 0}
               </h2>
             </div>

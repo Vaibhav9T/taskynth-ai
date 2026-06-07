@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Taskynth Backend (Spring Boot)",
+            "request": "launch",
+            "mainClass": "com.taskynth.TaskynthApplication",
+            "projectName": "server",
+            "cwd": "${workspaceFolder}/server"
+        }
+        ,
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Taskynth Frontend (Chrome)",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/client"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch Taskynth Fullstack",
+            "configurations": ["Taskynth Backend (Spring Boot)", "Launch Taskynth Frontend (Chrome)"]
+        }
+    ]
+}

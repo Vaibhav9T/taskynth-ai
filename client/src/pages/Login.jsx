@@ -52,7 +52,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090b] flex items-center justify-center px-6 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#09090b] flex items-center justify-center px-6 relative overflow-hidden transition-colors duration-300">
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -60,46 +60,46 @@ const Login = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="w-full max-w-md bg-[#18181b]/80 backdrop-blur-xl border border-white/10 p-8 sm:p-10 rounded-3xl shadow-2xl relative z-10"
+        className="w-full max-w-md bg-white/80 dark:bg-[#18181b]/80 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-8 sm:p-10 rounded-3xl shadow-xl dark:shadow-2xl relative z-10 transition-colors duration-300"
       >
           <Back />
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white mb-2">
+          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 transition-colors duration-300">
             Welcome back
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-slate-500 dark:text-gray-400 text-sm transition-colors duration-300">
             Sign in to your Taskynth workspace.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Email Address</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-gray-300 mb-1.5 transition-colors duration-300">Email Address</label>
             <input
               type="email"
               name="email"
               placeholder="name@company.com"
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Password</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-gray-300 mb-1.5 transition-colors duration-300">Password</label>
             <input
               type="password"
               name="password"
               placeholder="••••••••"
               onChange={handleChange}
-              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
+              className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all"
             />
           </div>
-          <button className="w-full bg-white text-black hover:bg-gray-100 transition-all py-3.5 rounded-xl text-sm font-semibold mt-4 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+          <button className="w-full bg-slate-900 dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-gray-100 transition-all py-3.5 rounded-xl text-sm font-semibold mt-4 shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
             Sign In
           </button>
         </form>
-        <p className="text-center text-sm text-gray-400 mt-8">
+        <p className="text-center text-sm text-slate-500 dark:text-gray-400 mt-8 transition-colors duration-300">
           Don't have an account?
-          <Link to="/register" className="text-white font-medium hover:underline ml-1.5">
+          <Link to="/register" className="text-slate-900 dark:text-white font-medium hover:underline ml-1.5 transition-colors duration-300">
             Create one
           </Link>
         </p>
