@@ -100,7 +100,10 @@ const MainLayout = () => {
 
         </div>
         <div className="mt-6 flex flex-col gap-3">
+         <div className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"> 
         <ThemeToggle />
+        <span>Toggle Theme</span>
+        </div>
         <button
           onClick={logout}
           className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all"
