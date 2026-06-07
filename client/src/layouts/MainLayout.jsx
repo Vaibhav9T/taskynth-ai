@@ -99,6 +99,7 @@ const MainLayout = () => {
           </nav>
 
         </div>
+        <div className="mt-6 flex flex-col gap-3">
         <ThemeToggle />
         <button
           onClick={logout}
@@ -107,7 +108,7 @@ const MainLayout = () => {
           <FaSignOutAlt size={18} />
           Logout
         </button>
-
+        </div>
       </aside>
 
       <main className="flex-1 overflow-y-auto relative">
