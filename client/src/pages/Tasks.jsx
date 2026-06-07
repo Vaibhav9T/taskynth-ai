@@ -108,13 +108,13 @@ const Tasks = () => {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto text-white">
+    <div className="p-8 max-w-7xl mx-auto text-slate-900 dark:text-white transition-colors duration-300">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
         <div>
           <h1 className="text-4xl font-extrabold tracking-tight mb-2">
             Tasks
           </h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-slate-500 dark:text-gray-400 text-sm transition-colors duration-300">
             Track and manage workflow tasks.
           </p>
         </div>
@@ -125,7 +125,7 @@ const Tasks = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           onSubmit={handleSubmit}
-          className="lg:col-span-4 bg-[#18181b] p-6 rounded-2xl border border-white/10 h-fit"
+          className="lg:col-span-4 bg-white dark:bg-[#18181b] p-6 rounded-2xl border border-slate-200 dark:border-white/10 h-fit shadow-sm dark:shadow-none transition-colors duration-300"
         >
           <div className="flex items-center gap-3 mb-6">
             <div className="p-2.5 bg-blue-500/10 text-blue-400 rounded-lg">
@@ -136,47 +136,47 @@ const Tasks = () => {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs font-medium text-gray-400 mb-1.5">Task Title</label>
+              <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5 transition-colors duration-300">Task Title</label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 placeholder="e.g., Update Landing Page"
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-400 mb-1.5">Description</label>
+              <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5 transition-colors duration-300">Description</label>
               <textarea
                 name="description"
                 value={formData.description}
                 placeholder="Task details..."
                 rows="4"
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm resize-none"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm resize-none"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-400 mb-1.5">Due Date</label>
+              <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5 transition-colors duration-300">Due Date</label>
               <input
                 type="date"
                 name="dueDate"
                 value={formData.dueDate}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm [color-scheme:dark]"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm [color-scheme:light] dark:[color-scheme:dark]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-400 mb-1.5">Priority</label>
+              <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5 transition-colors duration-300">Priority</label>
               <select
                 name="priority"
                 value={formData.priority}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all text-sm"
               >
                 <option value="HIGH">HIGH</option>
                 <option value="MEDIUM">MEDIUM</option>
@@ -184,7 +184,7 @@ const Tasks = () => {
               </select>
             </div>
 
-            <button className="w-full bg-white text-black hover:bg-gray-100 transition-all py-3 rounded-xl text-sm font-semibold mt-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center gap-2">
+            <button className="w-full bg-slate-900 dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-gray-100 transition-all py-3 rounded-xl text-sm font-semibold mt-2 shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center gap-2">
               Create Task
               <FaArrowRight size={12} />
             </button>
@@ -198,7 +198,7 @@ const Tasks = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-[#18181b] border border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:border-white/20 transition-colors group"
+              className="bg-white dark:bg-[#18181b] shadow-sm dark:shadow-none border border-slate-200 dark:border-white/10 p-6 rounded-2xl flex flex-col justify-between hover:border-slate-300 dark:hover:border-white/20 transition-colors duration-300 group"
             >
               <div>
                 <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-5">
@@ -207,31 +207,31 @@ const Tasks = () => {
                 <h2 className="text-xl font-bold mb-2 tracking-tight group-hover:text-blue-400 transition-colors">
                   {task.title}
                 </h2>
-                <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+                <p className="text-slate-500 dark:text-gray-400 text-sm line-clamp-2 leading-relaxed transition-colors duration-300">
                   {task.description}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between mt-8 pt-4 border-t border-white/5">
+              <div className="flex items-center justify-between mt-8 pt-4 border-t border-slate-100 dark:border-white/5 transition-colors duration-300">
                 <div className="flex items-center gap-2">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${task.priority === 'HIGH' ? 'bg-rose-500/10 text-rose-400' : task.priority === 'MEDIUM' ? 'bg-amber-500/10 text-amber-400' : 'bg-blue-500/10 text-blue-400'}`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${task.priority === 'HIGH' ? 'bg-rose-100 dark:bg-rose-500/10 text-rose-600 dark:text-rose-400' : task.priority === 'MEDIUM' ? 'bg-amber-100 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400' : 'bg-blue-100 dark:bg-blue-500/10 text-blue-600 dark:text-blue-400'}`}>
                     {task.priority}
                   </span>
-                  <span className="px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-medium">
+                  <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-medium">
                     {task.status}
                   </span>
                 </div>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => setEditingTask(task)}
-                    className="p-1.5 text-gray-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                    className="p-1.5 text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg transition-colors"
                     title="Edit Task"
                   >
                     <FaEdit size={14} />
                   </button>
                   <button
                     onClick={() => handleDelete(task.id)}
-                    className="p-1.5 text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                    className="p-1.5 text-slate-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 rounded-lg transition-colors"
                     title="Delete Task"
                   >
                     <FaTrash size={14} />
@@ -249,11 +249,11 @@ const Tasks = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="bg-[#18181b] border border-white/10 p-6 rounded-2xl w-full max-w-md shadow-2xl relative"
+            className="bg-white dark:bg-[#18181b] border border-slate-200 dark:border-white/10 p-6 rounded-2xl w-full max-w-md shadow-2xl relative"
           >
             <button
               onClick={() => setEditingTask(null)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-white transition-colors"
+              className="absolute top-4 right-4 p-2 text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
             >
               <FaTimes />
             </button>
@@ -267,35 +267,35 @@ const Tasks = () => {
 
             <form onSubmit={handleEditSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-400 mb-1.5">Task Title</label>
+                <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5">Task Title</label>
                 <input
                   type="text"
                   name="title"
                   value={editingTask.title}
                   onChange={handleEditChange}
-                  className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-400 mb-1.5">Description</label>
+                <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5">Description</label>
                 <textarea
                   name="description"
                   value={editingTask.description}
                   rows="3"
                   onChange={handleEditChange}
-                  className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm resize-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-gray-400 mb-1.5">Priority</label>
+                  <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5">Priority</label>
                   <select
                     name="priority"
                     value={editingTask.priority}
                     onChange={handleEditChange}
-                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
                   >
                     <option value="HIGH">HIGH</option>
                     <option value="MEDIUM">MEDIUM</option>
@@ -303,12 +303,12 @@ const Tasks = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-gray-400 mb-1.5">Status</label>
+                  <label className="block text-xs font-medium text-slate-500 dark:text-gray-400 mb-1.5">Status</label>
                   <select
                     name="status"
                     value={editingTask.status}
                     onChange={handleEditChange}
-                    className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-sm"
                   >
                     <option value="TODO">TODO</option>
                     <option value="IN_PROGRESS">IN PROGRESS</option>
@@ -317,7 +317,7 @@ const Tasks = () => {
                 </div>
               </div>
 
-              <button type="submit" className="w-full bg-white text-black hover:bg-gray-100 transition-all py-3 rounded-xl text-sm font-semibold mt-4 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+              <button type="submit" className="w-full bg-slate-900 dark:bg-white text-white dark:text-black hover:bg-slate-800 dark:hover:bg-gray-100 transition-all py-3 rounded-xl text-sm font-semibold mt-4 shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                 Save Changes
               </button>
             </form>

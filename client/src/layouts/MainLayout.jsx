@@ -10,6 +10,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+import ThemeToggle from "./ThemeToggle";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,16 +25,16 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#09090b] text-white selection:bg-blue-500/30">
+    <div className="flex flex-col md:flex-row min-h-screen bg-slate-50 dark:bg-[#09090b] text-slate-900 dark:text-white selection:bg-blue-500/30 transition-colors duration-300">
 
       {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-[#18181b]/80 backdrop-blur-xl sticky top-0 z-30">
-        <h1 className="text-xl font-extrabold tracking-tight text-white">
+      <div className="md:hidden flex items-center justify-between p-4 border-b border-slate-200 dark:border-white/10 bg-white/80 dark:bg-[#18181b]/80 backdrop-blur-xl sticky top-0 z-30 transition-colors duration-300">
+        <h1 className="text-xl font-extrabold tracking-tight">
           Taskynth <span className="text-blue-500">AI</span>
         </h1>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 text-gray-400 hover:text-white transition-colors"
+          className="p-2 text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white transition-colors"
         >
           {isSidebarOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
         </button>
@@ -47,11 +48,11 @@ const MainLayout = () => {
         ></div>
       )}
 
-      <aside className={`fixed md:relative inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition-transform duration-300 ease-in-out w-64 bg-[#18181b]/95 md:bg-[#18181b]/50 backdrop-blur-xl border-r border-white/10 p-6 flex flex-col justify-between z-50`}>
+      <aside className={`fixed md:relative inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 transition-all duration-300 ease-in-out w-64 bg-white/95 md:bg-white/50 dark:bg-[#18181b]/95 dark:md:bg-[#18181b]/50 backdrop-blur-xl border-r border-slate-200 dark:border-white/10 p-6 flex flex-col justify-between z-50`}>
 
         <div>
 
-          <h1 className="text-2xl font-extrabold tracking-tight mb-8 text-white hidden md:block">
+          <h1 className="text-2xl font-extrabold tracking-tight mb-8 hidden md:block transition-colors duration-300">
   
             Taskynth <span className="text-blue-500">AI</span>
           
@@ -62,7 +63,7 @@ const MainLayout = () => {
             <Link
               to="/dashboard"
               onClick={closeSidebar}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             >
               <FaHome size={18} />
               Dashboard
@@ -71,7 +72,7 @@ const MainLayout = () => {
             <Link
               to="/projects"
               onClick={closeSidebar}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             >
               <FaProjectDiagram size={18} />
               Projects
@@ -80,7 +81,7 @@ const MainLayout = () => {
             <Link
               to="/tasks"
               onClick={closeSidebar}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             >
               <FaTasks size={18} />
               Tasks
@@ -89,7 +90,7 @@ const MainLayout = () => {
             <Link
               to="/profile"
               onClick={closeSidebar}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
             >
               <FaUser size={18} />
               Profile
@@ -98,10 +99,10 @@ const MainLayout = () => {
           </nav>
 
         </div>
-
+        <ThemeToggle />
         <button
           onClick={logout}
-          className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+          className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all"
         >
           <FaSignOutAlt size={18} />
           Logout
